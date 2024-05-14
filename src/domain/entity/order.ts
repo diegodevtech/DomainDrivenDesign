@@ -23,7 +23,7 @@ export default class Order {
   }
 
   get items(): OrderItem[]{
-    return this.items
+    return this._items
   }
 
   validate(): boolean{
