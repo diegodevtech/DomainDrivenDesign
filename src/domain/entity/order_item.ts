@@ -34,7 +34,7 @@ export default class OrderItem {
   }
 
   get name(): string{
-    return this.name
+    return this._name
   }
 
   get productId(): string {
