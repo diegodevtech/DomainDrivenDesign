@@ -12,9 +12,17 @@ export default class Customer {
         this.validate();
     }
 
+    isActive(): boolean {
+        return this._active;
+    }
+
+    get name(): string {
+        return this._name
+    }
+
     validate() {
         if(this._name.length === 0) {
-            throw new Error("Name is required!")
+            throw new Error("Name is required")
         }
         if (this._id.length === 0) {
             throw new Error("ID is required")
