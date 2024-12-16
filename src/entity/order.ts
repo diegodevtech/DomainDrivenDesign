@@ -16,18 +16,20 @@ export default class Order {
   }
 
   validate() {
-    if(this._id.length === 0) {
-      throw new Error("ID is required.")
+    if (this._id.length === 0) {
+      throw new Error("ID is required.");
     }
     if (this._customerId.length === 0) {
       throw new Error("Customer ID is required.");
     }
     if (this._items.length === 0) {
-      throw new Error("A list of items is required and must have length greater than zero.");
-    }    
+      throw new Error(
+        "A list of items is required and must have length greater than zero."
+      );
+    }
   }
 
   total(): number {
-    return this._items.reduce((aac, item) => aac + item._price, 0);
+    return this._items.reduce((acc, item) => acc + item.orderItemTotal(), 0);
   }
 }
