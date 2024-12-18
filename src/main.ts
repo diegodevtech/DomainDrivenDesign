@@ -8,7 +8,7 @@ const address = new Address("Rua tal", 111,"69095-626","Manaus")
 customer.setAddress(address)
 customer.activate()
 
-const item1 = new OrderItem("1", "Item1", 10);
-const item2 = new OrderItem("2", "Item 2", 15);
+const item1 = new OrderItem("1", "123", "Item1", 1, 10);
+const item2 = new OrderItem("2", "124", "Item 2", 1, 15);
 const order = new Order("1", "123", [item1, item2])
 
