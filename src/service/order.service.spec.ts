@@ -11,6 +11,8 @@ describe("Order Service Unit Tests", () => {
         const order1 = OrderService.placeOrder(customer, [orderItem1])
 
         expect(customer.rewardPoints).toBe(30)
+        expect(order1).toBeInstanceOf(Order)
+    
     })
     it("should get total of all orders", () => {
         const item = new OrderItem("123", "234", "Prod1", 10, 2);
