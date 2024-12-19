@@ -82,7 +82,19 @@ describe("Product Repository Test", () => {
       name: foundProduct.name,
       price: foundProduct.price,
     });
+  })
 
+  it("should find all products", async () => {
+    const productRepository = new ProductRepository();
 
+    const product1 = new Product("1", "Product 1", 100);
+    await productRepository.create(product1);
+
+    const product2 = new Product("2", "Product 2", 200);
+    await productRepository.create(product2);
+
+    const foundProducts = await productRepository.findAll();
+
+    expect([product1, product2]).toEqual(foundProducts);
   })
 });
