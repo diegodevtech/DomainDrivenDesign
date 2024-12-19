@@ -107,6 +107,7 @@ describe("Customer repository tests", () => {
 
   it("should find all customers", async () => {
     const customerRepository = new CustomerRepository();
+
     const customer1 = new Customer("123", "Customer 1");
     const address1 = new Address("Rua tal", 110, "10100-111", "Manaus");
     customer1.setAddress(address1);
@@ -114,11 +115,11 @@ describe("Customer repository tests", () => {
     customer1.activate();
     await customerRepository.create(customer1);
 
-    const customer2 = new Customer("123", "Customer 1");
-    const address2 = new Address("Rua tal", 110, "10100-111", "Manaus");
+    const customer2 = new Customer("234", "Customer 2");
+    const address2 = new Address("Rua top", 10, "20200-222", "Manaus");
     customer2.setAddress(address2);
-    await customerRepository.create(customer2);
     customer2.addRewardPoints(20);
+    await customerRepository.create(customer2);
 
     const customers = await customerRepository.findAll();
 
