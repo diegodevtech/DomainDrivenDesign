@@ -15,6 +15,10 @@ export default class Order {
     this.validate();
   }
 
+  get id(): string {
+    return this._id
+  }
+
   validate(): boolean {
     if (this._id.length === 0) {
       throw new Error("ID is required.");
