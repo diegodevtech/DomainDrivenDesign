@@ -49,4 +49,10 @@ export default class Order {
   total(): number {
     return this._items.reduce((acc, item) => acc + item.orderItemTotal(), 0);
   }
+
+  // 
+  addItem(newItems: OrderItem[]): void {
+    this._items = [...this._items, ...newItems]
+  }
+  // 
 }
