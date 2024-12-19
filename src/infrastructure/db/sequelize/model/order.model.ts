@@ -22,5 +22,5 @@ export default class OrderModel extends Model {
   declare items: OrderItemModel[];
 
   @Column({ allowNull: false })
-  declare total: string;
+  declare total: number;
 }
