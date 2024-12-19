@@ -87,5 +87,21 @@ describe("Customer repository tests", () => {
 
   })
 
+  it("should find a customer", async () => {
+    const customerRepository = new CustomerRepository();
+    const customer = new Customer("123", "Customer 1");
+    const address = new Address("Rua tal", 110, "10100-111", "Manaus");
+    customer.setAddress(address);
+    await customerRepository.create(customer);
 
+    const customerResult = await customerRepository.find(customer.id);
+    expect(customer).toStrictEqual(customerResult);
+  })
+
+  it("should throw an error when customer is not found", ()=> {
+    const customerRepository = new CustomerRepository();
+    expect(async () => {
+      await customerRepository.find("12345")
+    }).rejects.toThrow("Customer not found.")
+  })
 });
