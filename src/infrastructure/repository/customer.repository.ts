@@ -41,7 +41,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
     try{
       customerModel = await CustomerModel.findOne({
         where: { id },
-        rejectOnEmpty: true
+        rejectOnEmpty: true,
       });
     } catch (error) {
       throw new Error("Customer not found.");
