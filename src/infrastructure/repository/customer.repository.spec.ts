@@ -5,41 +5,87 @@ import Address from "../../domain/entity/address";
 import CustomerRepository from "./customer.repository";
 
 describe("Customer repository tests", () => {
-    let sequelize: Sequelize;
+  let sequelize: Sequelize;
 
-    beforeEach(async () => {
-      sequelize = new Sequelize({
-        dialect: "sqlite",
-        storage: ":memory:",
-        logging: false,
-        sync: { force: true },
-      });
-
-      sequelize.addModels([CustomerModel]);
-      await sequelize.sync();
-    });
-    afterEach(async () => {
-      await sequelize.close();
+  beforeEach(async () => {
+    sequelize = new Sequelize({
+      dialect: "sqlite",
+      storage: ":memory:",
+      logging: false,
+      sync: { force: true },
     });
 
-    it("should create a customer", async () => {
-        const customerRepository = new CustomerRepository();
-        const customer = new Customer("123", "Customer 1");
-        const address = new Address("Rua tal", 110, "10100-111", "Manaus")
-        customer.setAddress(address);
-        await customerRepository.create(customer);
+    sequelize.addModels([CustomerModel]);
+    await sequelize.sync();
+  });
+  afterEach(async () => {
+    await sequelize.close();
+  });
 
-        const customerModel = await CustomerModel.findOne({ where: { id: "123" } });
+  it("should create a customer", async () => {
+    const customerRepository = new CustomerRepository();
+    const customer = new Customer("123", "Customer 1");
+    const address = new Address("Rua tal", 110, "10100-111", "Manaus");
+    customer.setAddress(address);
+    await customerRepository.create(customer);
 
-        expect(customerModel.toJSON()).toStrictEqual({
-            id: "123",
-            name: customer.name,
-            active: customer.isActive(),
-            rewardPoints: customer.rewardPoints,
-            street: customer.street,
-            city: customer.city,
-            zip: customer.zip,
-            number: customer.number
-        })
-    })
-})
+    const customerModel = await CustomerModel.findOne({ where: { id: "123" } });
+
+    expect(customerModel.toJSON()).toStrictEqual({
+      id: customer.id,
+      name: customer.name,
+      active: customer.isActive(),
+      street: customer.street,
+      number: customer.number,
+      zip: customer.zip,
+      city: customer.city,
+      rewardPoints: customer.rewardPoints,
+    });
+  });
+
+  it("should update a customer", async () => {
+    const customerRepository = new CustomerRepository();
+    const customer = new Customer("123", "Customer 1");
+    const address = new Address("Rua tal", 110, "10100-111", "Manaus");
+    customer.setAddress(address);
+    await customerRepository.create(customer);
+
+    customer.changeName("Diego");
+    await customerRepository.update(customer);
+
+    const customerModel = await CustomerModel.findOne({ where: { id: "123" } });
+
+    expect(customerModel.toJSON()).toStrictEqual({
+      id: customer.id,
+      name: customer.name,
+      active: customer.isActive(),
+      street: customer.street,
+      number: customer.number,
+      zip: customer.zip,
+      city: customer.city,
+      rewardPoints: customer.rewardPoints,
+    });
+
+    const address2 = new Address("Rua Top", 10, "20200-222", "Iranduba");
+
+    customer.setAddress(address2);
+
+    await customerRepository.update(customer);
+
+    const customerModel2 = await CustomerModel.findOne({ where: { id: "123" } });
+
+    expect(customerModel2.toJSON()).toStrictEqual({
+      id: customer.id,
+      name: customer.name,
+      active: customer.isActive(),
+      street: customer.street,
+      number: customer.number,
+      zip: customer.zip,
+      city: customer.city,
+      rewardPoints: customer.rewardPoints,
+    });
+
+  })
+
+
+});
