@@ -17,5 +17,9 @@ describe("Product Factory Unit Test", () => {
     expect(product.name).toBe("Product B")
     expect(product.price).toBe(2);
     expect(product.constructor.name).toBe("ProductB");
+  });
+
+  it("shohuld throw error when receiving product type different than A or B", () => {
+    expect(() => ProductFactory.create("c", "Product C", 1)).toThrow("Product type not supported")
   })
 })
