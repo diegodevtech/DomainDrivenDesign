@@ -6,6 +6,7 @@ export type CustomerAddressHasChangedEventMessageType = {
   name: string;
   address: Address;
 }
+
 export default class CustomerAddressHasChangedEvent implements EventInterface {
   dataTimeOcurred: Date;
   eventData: CustomerAddressHasChangedEventMessageType;
