@@ -1,5 +1,5 @@
-import EventHandlerInterface from "../../@shared/event-handler.interface";
-import CustomerAddressHasChangedEvent from "../customer-address-has-changed.event";
+import EventHandlerInterface from "../../../@shared/event/event-handler.interface";
+import CustomerAddressHasChangedEvent from "../../../event/customer/customer-address-has-changed.event";
 
 export default class EnviaConsoleLogHandler implements EventHandlerInterface<CustomerAddressHasChangedEvent> {
   handle(event: CustomerAddressHasChangedEvent): void {

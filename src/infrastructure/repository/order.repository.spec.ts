@@ -7,7 +7,7 @@ import CustomerRepository from "./customer.repository";
 import Customer from "../../domain/entity/customer";
 import Address from "../../domain/entity/address";
 import ProductRepository from "./product.repository";
-import Product from "../../domain/entity/product";
+import Product from "../../domain/product/entity/product";
 import OrderItem from "../../domain/entity/order_item";
 import Order from "../../domain/entity/order";
 import OrderRepository from "./order.repository";
