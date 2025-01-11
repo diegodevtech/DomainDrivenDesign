@@ -110,19 +110,19 @@ describe("Event Domain Tests", () => {
     const address2 = new Address("Rua Top", 2, "69212-212", "Manaus");
     customer.setAddress(address2);
 
-    eventDispatcher.register("CustomerAddressHasChanged", eventHandler);
-    expect(eventDispatcher.getEventHandlers["CustomerAddressHasChanged"][0]).toMatchObject(eventHandler);
+    // Observe que o nome dado ao registro do evento deve ser o mesmo nome da classe do evento
+    eventDispatcher.register("CustomerAddressHasChangedEvent", eventHandler);
+    expect(eventDispatcher.getEventHandlers["CustomerAddressHasChangedEvent"][0]).toMatchObject(eventHandler);
+    expect(eventDispatcher.getEventHandlers["CustomerAddressHasChangedEvent"]).toBeDefined();
+    expect(eventDispatcher.getEventHandlers["CustomerAddressHasChangedEvent"].length).toBe(1);
 
-    const customerAddressHasChanged = new CustomerAddressHasChangedEvent({
+    const customerAddressHasChangedEvent = new CustomerAddressHasChangedEvent({
       id: customer.id,
       name: customer.name,
       address: address2
     });
 
-    eventDispatcher.notify(customerAddressHasChanged);
+    eventDispatcher.notify(customerAddressHasChangedEvent);
     expect(spyCustomerAddressHasChangedHandler).toHaveBeenCalled();
-    
-
-  })
-
+  });
 })
