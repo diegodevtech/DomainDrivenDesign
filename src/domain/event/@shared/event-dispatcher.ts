@@ -33,6 +33,6 @@ export default class EventDispatcher implements EventDispatcherInterface {
     }
   }
   unregisterAll(): void {
-    
+    this.eventHandlers = {}
   }
 }
