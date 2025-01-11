@@ -1,5 +1,5 @@
-import Address from "../../entity/address";
 import EventInterface from "../../@shared/event/event.interface";
+import Address from "../value-object/address";
 
 export type CustomerAddressHasChangedEventMessageType = {
   id: string;
