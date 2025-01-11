@@ -108,6 +108,7 @@ describe("Event Domain Tests", () => {
     expect(customer.isActive()).toBe(true);
     
     const address2 = new Address("Rua Top", 2, "69212-212", "Manaus");
+    // o nome da minha função foi definida como setAddress() e não changeAddress() apenas por fazer mais sentido para mim.
     customer.setAddress(address2);
 
     // Observe que o nome dado ao registro do evento deve ser o mesmo nome da classe do evento
