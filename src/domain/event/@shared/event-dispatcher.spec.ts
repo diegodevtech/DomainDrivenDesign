@@ -1,3 +1,4 @@
+import SendEmailWhenProductIsCreatedHandler from "../product/handler/sendEmailWhenProductIsCreated.handler";
 import EventDispatcher from "./event-dispatcher";
 
 describe("Event Domain Tests", () => {
