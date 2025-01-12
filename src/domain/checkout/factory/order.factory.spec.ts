@@ -1,6 +1,7 @@
 import { v4 as uuid } from "uuid"
 import OrderFactory from "./order.factory";
-describe("Order factory unit tests", () => [
+
+describe("Order factory unit tests", () => {
   it("should create an order", () => {
     const orderProps = {
       id: uuid(),
@@ -22,4 +23,4 @@ describe("Order factory unit tests", () => [
     expect(order.customerId).toEqual(orderProps.customerId)
     expect(order.items.length).toBe(1)
   })
-])
+})
